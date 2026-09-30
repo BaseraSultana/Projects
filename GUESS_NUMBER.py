@@ -4,6 +4,9 @@ attempts = 0
 
 # This is a number guessing game. Designed for the users to spend their time doing something interesting.
 while True:
+    
+    # Guess is the input provided by the user for guessing the actual number.
+
     guess = input("\n Guess a number between 1 to 100 or Quit(Q) : ").strip()
 
     if (guess.casefold() == "q"):
