@@ -1,6 +1,8 @@
 import random
 target = random.randint(1, 100)
 attempts = 0
+
+# This is a number guessing game. Designed for the users to spend their time doing something interesting.
 while True:
     guess = input("\n Guess a number between 1 to 100 or Quit(Q) : ").strip()
 
