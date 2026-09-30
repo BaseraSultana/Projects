@@ -1,10 +1,10 @@
 import random
 target = random.randint(1, 100)
+# Attempts is used to count the number of times the user guessed.
 attempts = 0
 
 # This is a number guessing game. Designed for the users to spend their time doing something interesting.
 while True:
-    
     # Guess is the input provided by the user for guessing the actual number.
 
     guess = input("\n Guess a number between 1 to 100 or Quit(Q) : ").strip()
@@ -29,4 +29,5 @@ while True:
         print("Your guess is greater than the target!")
     else:
         print("Your guess is less than the target!")
+
 print("\n--------GAME OVER--------")
