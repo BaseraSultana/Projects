@@ -101,6 +101,14 @@ def get_choice():
     elif choice == 4:
         divide()
     elif choice == 5:
+        modulus()
+    elif choice == 6:
+        exponent()
+    elif choice == 7:
+        floor_division()
+    elif choice == 8:
+
+    elif choice == 9:
         print("Exiting....")
         raise SystemExit
     else:
@@ -110,7 +118,7 @@ def get_choice():
 def show_menu():
     """Display the calculator menu and process a selection."""
     menu = ("1. ADDITION", "2. SUBTRACTION",
-            "3. MULTIPLICATION", "4. DIVISION", "5. EXIT")
+            "3. MULTIPLICATION", "4. DIVISION", "5. MODULUS", "6. EXPONENT", "7. FLOOR DIVISION", "8. HISTORY", "9. EXIT")
     print("\nCALCULATOR MENU\n" + "\n".join(menu))
     get_choice()
 
