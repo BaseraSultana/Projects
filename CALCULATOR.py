@@ -5,7 +5,7 @@ while True:
         two = int(input("Enter the Second number: ").strip())
 
     def display_result():
-        print(f"Result = {result}")
+        print(f"Result = {result:.2f}")
         print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
         choice = int(input("Enter Your Choice: ").strip())
         if choice == "1":
@@ -30,6 +30,14 @@ while True:
         get_numbers()
         result = one * two
         display_result()
+
+    def divide():
+        get_numbers()
+        if two == "0":
+            print("Not defined")
+        else:
+            result = one / two
+            display_result()
 
     def show_menu():
         menu = ("1. ADDITION", "2. SUBTRACTION",
