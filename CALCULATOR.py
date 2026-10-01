@@ -82,6 +82,7 @@ def floor_division():
     else:
         result = one // two
         print(f"Result = {result}")
+        history(result)
         print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
         choice = int(input("Enter Your Choice: ").strip())
         if choice == 1:
@@ -93,16 +94,16 @@ def floor_division():
             print("Invalid Input")
 
 
+history_entries = []
+
+
 def history(result):
-    """Display the calculation history."""
-    history_entries = []
+    """Store a calculation result in the calculator history."""
     history_entries.append(result)
-    return history_entries
 
 
 def calculation_history():
     """Display the saved calculation history."""
-    history_entries = history()
     if len(history_entries) == 0:
         print("No calculation history available")
     else:
