@@ -10,7 +10,7 @@ while True:
         if choice == "1":
             def add()
         elif choice == "2":
-            def subtraction()
+            def subtract()
         elif choice == "3":
             def multiply()
         elif choice == "4":
@@ -24,3 +24,12 @@ while True:
     def get_numbers():
         one = int(input("Enter the First number: ").strip())
         two = int(input("Enter the Second number: ").strip())
+
+    def display_result():
+        print(f"Result = {result}")
+        print("Do You Want To Continue?\n", "1. Yes", "2.")
+
+    def add():
+        get_numbers()
+        result = one + two
+        display_result()
