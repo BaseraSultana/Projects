@@ -11,6 +11,7 @@ def get_numbers():
 def display_result(result):
     """Display a calculation result and ask whether to continue."""
     print(f"Result = {result:.2f}")
+    history()
     print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
@@ -54,6 +55,7 @@ def divide():
 
 
 def modulus():
+    """Find the remainder when the first number is divided by the second."""
     one, two = get_numbers()
     if two == 0:
         print("Not defined")
@@ -63,6 +65,7 @@ def modulus():
 
 
 def exponent():
+    """Raise the first number to the power of the second."""
     one, two = get_numbers()
     if one == 0 and two == 0:
         print("Not defined")
@@ -72,12 +75,13 @@ def exponent():
 
 
 def floor_division():
+    """Return the integer quotient of the two numbers."""
     one, two = get_numbers()
     if two == 0:
         print("Not defined")
     else:
         result = one // two
-        print("Result = {result}")
+        print(f"Result = {result}")
         print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
         choice = int(input("Enter Your Choice: ").strip())
         if choice == 1:
@@ -87,6 +91,21 @@ def floor_division():
             raise SystemExit
         else:
             print("Invalid Input")
+
+
+def history():
+    """Display the calculation history."""
+    history_entries = []
+    history_entries.append(result)
+
+
+def calculation_history():
+    history_entries = history()
+    if len(history_entries) == 0:
+        print("No calculation history available")
+    else:
+    for i in history:
+        print(i)
 
 
 def get_choice():
