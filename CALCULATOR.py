@@ -3,6 +3,24 @@ while True:
         menu = ("1. ADDITION", "2. SUBTRACTION",
                 "3. MULTIPLICATION", "4. DIVISION", "5. EXIT")
         print("\nCALCULATOR MENU\n" + "\n".join(menu))
+        get_choice()
 
-show_menu()
-print("n")
+    def get_choice():
+        choice = int(input("Enter Your Choice: ").strip())
+        if choice == "1":
+            def add()
+        elif choice == "2":
+            def subtraction()
+        elif choice == "3":
+            def multiply()
+        elif choice == "4":
+            def divide()
+        elif choice == "5":
+            print("Exiting....")
+            break
+        else:
+            print("Invalid Input. Try Again!")
+
+    def get_numbers():
+        one = int(input("Enter the First number: ").strip())
+        two = int(input("Enter the Second number: ").strip())
