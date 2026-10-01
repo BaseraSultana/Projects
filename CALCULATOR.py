@@ -71,6 +71,24 @@ def exponent():
         display_result(result)
 
 
+def floor_division():
+    one, two = get_numbers()
+    if two == 0:
+        print("Not defined")
+    else:
+        result = one // two
+        print("Result = {result}")
+        print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
+        choice = int(input("Enter Your Choice: ").strip())
+        if choice == 1:
+            show_menu()
+        elif choice == 2:
+            print("Exiting.....")
+            raise SystemExit
+        else:
+            print("Invalid Input")
+
+
 def get_choice():
     """Handle the user's menu selection."""
     choice = int(input("Enter Your Choice: ").strip())
