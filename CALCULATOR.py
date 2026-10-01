@@ -11,7 +11,7 @@ def get_numbers():
 def display_result(result):
     """Display a calculation result and ask whether to continue."""
     print(f"Result = {result:.2f}")
-    history()
+    history(result)
     print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
@@ -93,19 +93,21 @@ def floor_division():
             print("Invalid Input")
 
 
-def history():
+def history(result):
     """Display the calculation history."""
     history_entries = []
     history_entries.append(result)
+    return history_entries
 
 
 def calculation_history():
+    """Display the saved calculation history."""
     history_entries = history()
     if len(history_entries) == 0:
         print("No calculation history available")
     else:
-    for i in history:
-        print(i)
+        for i in history_entries:
+            print(i)
 
 
 def get_choice():
@@ -126,7 +128,7 @@ def get_choice():
     elif choice == 7:
         floor_division()
     elif choice == 8:
-
+        calculation_history()
     elif choice == 9:
         print("Exiting....")
         raise SystemExit
