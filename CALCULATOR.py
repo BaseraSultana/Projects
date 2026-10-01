@@ -21,7 +21,13 @@ while True:
         result = one + two
         display_result()
 
-    def subtra
+    def subtract():
+        get_numbers()
+        result = one - two
+        display_result()
+
+    def multiply():
+        g
 
     def show_menu():
         menu = ("1. ADDITION", "2. SUBTRACTION",
@@ -32,13 +38,13 @@ while True:
     def get_choice():
         choice = int(input("Enter Your Choice: ").strip())
         if choice == "1":
-            def add()
+            add()
         elif choice == "2":
-            def subtract()
+            subtract()
         elif choice == "3":
-            def multiply()
+            multiply()
         elif choice == "4":
-            def divide()
+            divide()
         elif choice == "5":
             print("Exiting....")
             break
