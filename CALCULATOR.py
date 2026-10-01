@@ -53,6 +53,24 @@ def divide():
         display_result(result)
 
 
+def modulus():
+    one, two = get_numbers()
+    if two == 0:
+        print("Not defined")
+    else:
+        result = one % two
+        display_result(result)
+
+
+def exponent():
+    one, two = get_numbers()
+    if one == 0 and two == 0:
+        print("Not defined")
+    else:
+        result = one ** two
+        display_result(result)
+
+
 def get_choice():
     """Handle the user's menu selection."""
     choice = int(input("Enter Your Choice: ").strip())
