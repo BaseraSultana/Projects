@@ -27,7 +27,9 @@ while True:
         display_result()
 
     def multiply():
-        g
+        get_numbers()
+        result = one * two
+        display_result()
 
     def show_menu():
         menu = ("1. ADDITION", "2. SUBTRACTION",
