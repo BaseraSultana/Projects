@@ -3,15 +3,15 @@
 
 def get_numbers():
     """Read two integer values from the user."""
-    one = int(input("Enter the First number: ").strip())
-    two = int(input("Enter the Second number: ").strip())
+    one = float(input("Enter the First number: ").strip())
+    two = float(input("Enter the Second number: ").strip())
     return one, two
 
 
 def display_result(result):
     """Display a calculation result and ask whether to continue."""
     print(f"Result = {result:.2f}")
-    history(result)
+    # history(result)
     print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
@@ -27,6 +27,7 @@ def add():
     """Add two numbers."""
     one, two = get_numbers()
     result = one + two
+    history_entries.append(f"{one}" " + " f"{two}" " = " f"{result}")
     display_result(result)
 
 
@@ -34,6 +35,7 @@ def subtract():
     """Subtract the second number from the first."""
     one, two = get_numbers()
     result = one - two
+    history_entries.append(f"{one}" " - " f"{two}" " = " f"{result}")
     display_result(result)
 
 
@@ -41,6 +43,7 @@ def multiply():
     """Multiply two numbers."""
     one, two = get_numbers()
     result = one * two
+    history_entries.append(f"{one}" " * " f"{two}" " = " f"{result}")
     display_result(result)
 
 
@@ -51,6 +54,7 @@ def divide():
         print("Not defined")
     else:
         result = one / two
+        history_entries.append(f"{one}" " / " f"{two}" " = " f"{result}")
         display_result(result)
 
 
@@ -61,6 +65,7 @@ def modulus():
         print("Not defined")
     else:
         result = one % two
+        history_entries.append(f"{one}" " % " f"{two}" " = " f"{result}")
         display_result(result)
 
 
@@ -71,6 +76,7 @@ def exponent():
         print("Not defined")
     else:
         result = one ** two
+        history_entries.append(f"{one}" " ** " f"{two}" " = " f"{result}")
         display_result(result)
 
 
@@ -81,8 +87,10 @@ def floor_division():
         print("Not defined")
     else:
         result = one // two
+        result = int(result)
+        history_entries.append(f"{one}" " // " f"{two}" " = " f"{result}")
         print(f"Result = {result}")
-        history(result)
+        # history(result)
         print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
         choice = int(input("Enter Your Choice: ").strip())
         if choice == 1:
@@ -97,9 +105,9 @@ def floor_division():
 history_entries = []
 
 
-def history(result):
-    """Store a calculation result in the calculator history."""
-    history_entries.append(result)
+# def history(result):
+#     """Store a calculation result in the calculator history."""
+#     history_entries.append(result)
 
 
 def calculation_history():
