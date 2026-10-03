@@ -61,3 +61,46 @@ def add_task():
 
 
 def view_task():
+    menu = ("1. DAILY TASKS", "2.WEEKLY TASKS,"3. MONTHLY TASKS","4. YEARLY TASKS","5. ALL TASKS","6.EXIT")
+      print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
+      choice = int(input("Enter Your Choice:").strip())
+      if choice == 1:
+        if len(daily_task) == 0:
+            print("No daily tasks available")
+            view_task()
+        else:
+            print("\n Daily Tasks: ")
+            for task in daily_task:
+                print(task)
+    elif choice == 2:
+        if len(weekly_task) == 0:
+            print("No daily tasks available")
+            view_task()
+        else:
+            print("\n Weekly Tasks: ")
+            for task in weekly_task:
+                print(task)
+    elif choice == 3:
+        if len(monthly_task) == 0:
+            print("No daily tasks available")
+            view_task()
+        else:
+            print("\n Monthly Tasks: ")
+            for task in monthly_task:
+                print(task)
+    elif choice == 4:
+        if len(yearly_task) == 0:
+            print("No daily tasks available")
+            view_task()
+        else:
+            print("\n Yearly Tasks: ")
+            for task in yearly_task:
+                print(task)
+    elif choice == 5:
+        if len(daily_task + weekly_task + monthly_task + yearly_task) == 0:
+            print("No daily tasks available")
+            view_task()
+        else:
+            print("\n All Tasks: ")
+            for task in daily_task + weekly_task + monthly_task + yearly_task:
+                print(task)
