@@ -58,3 +58,6 @@ def add_task():
     else:
         print("Invalid Input. Try Again!")
         add_task()
+
+
+def view_task():
