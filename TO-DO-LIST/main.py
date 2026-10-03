@@ -29,7 +29,9 @@ yearly_task = []
 
 
 def task_choice():
+    """Prompt the user for a task description and return it."""
     task = input("Enter Your Task: ")
+    return task
 
 
 def add_task(task):
