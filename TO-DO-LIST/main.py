@@ -104,3 +104,9 @@ def view_task():
             print("\n All Tasks: ")
             for task in daily_task + weekly_task + monthly_task + yearly_task:
                 print(task)
+    elif choice == 6:
+        print("Exiting.....")
+        show_menu()
+    else:
+        print("Invalid Input. Try Again!")
+        show_menu()
