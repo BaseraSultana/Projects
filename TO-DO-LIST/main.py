@@ -1,3 +1,6 @@
+import file_handler
+
+
 def show_menu():
     menu = ("1. ADD TASK", "2. VIEW TASK",
             "3. COMPLETE TASK", "4. DELETE TASK", "5. EXIT")
@@ -110,3 +113,24 @@ def view_task():
     else:
         print("Invalid Input. Try Again!")
         show_menu()
+
+def save_task():
+    menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS","4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS","6. EXIT")  
+    choice = int(input("Enter Your Choice: ").strip())      
+    if choice == 1:
+        file_handler.save_daily()
+    elif choice == 2:
+        file_handler.save_weekly()
+    elif choice == 3:
+        file_handler.save_monthly()
+    elif choice == 4:
+        file_handler.save_yearly()
+    elif choice == 5:
+        file_handler.save_all()
+    elif choice== 6:
+        print("Exiting.....")
+        show_menu()
+    else:
+        print("Invalid Input. Try Again!")
+        save_task()
+        
