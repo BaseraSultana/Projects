@@ -2,23 +2,27 @@ import file_handler
 
 
 def show_menu():
-    menu = ("1. ADD TASK", "2. VIEW TASK",
-            "3. COMPLETE TASK", "4. DELETE TASK", "5. EXIT")
+    """Display the main menu and handle the user's selection."""
+    menu = ("1. ADD TASK", "2. VIEW TASK", "3. SAVE TASK",
+            "4. COMPLETE TASK", "5. DELETE TASK", "6. EXIT")
     print("\nTO-DO LIST\n" + "\n".join(menu))
     get_choice()
 
 
 def get_choice():
+    """Handle the user's selection from the main menu."""
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
         add_task()
     elif choice == 2:
         view_task()
     elif choice == 3:
-        complete_task()
+        save_task()
     elif choice == 4:
-        delete_task()
+        complete_task()
     elif choice == 5:
+        delete_task()
+    elif choice == 6:
         print("Exiting.....")
         raise SystemExit
     else:
@@ -63,60 +67,52 @@ def add_task():
         add_task()
 
 
+def display_task_list(task_list, label):
+    """Display the selected tasks or a relevant empty-state message."""
+    if not task_list:
+        print(f"No {label.lower()} available")
+        return
+
+    print(f"\n {label}: ")
+    for task in task_list:
+        print(task)
+
+
 def view_task():
-    menu = ("1. DAILY TASKS", "2.WEEKLY TASKS,"3. MONTHLY TASKS","4. YEARLY TASKS","5. ALL TASKS","6.EXIT")
-      print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
-      choice = int(input("Enter Your Choice:").strip())
-      if choice == 1:
-        if len(daily_task) == 0:
-            print("No daily tasks available")
-            view_task()
-        else:
-            print("\n Daily Tasks: ")
-            for task in daily_task:
-                print(task)
-    elif choice == 2:
-        if len(weekly_task) == 0:
-            print("No daily tasks available")
-            view_task()
-        else:
-            print("\n Weekly Tasks: ")
-            for task in weekly_task:
-                print(task)
-    elif choice == 3:
-        if len(monthly_task) == 0:
-            print("No daily tasks available")
-            view_task()
-        else:
-            print("\n Monthly Tasks: ")
-            for task in monthly_task:
-                print(task)
-    elif choice == 4:
-        if len(yearly_task) == 0:
-            print("No daily tasks available")
-            view_task()
-        else:
-            print("\n Yearly Tasks: ")
-            for task in yearly_task:
-                print(task)
-    elif choice == 5:
-        if len(daily_task + weekly_task + monthly_task + yearly_task) == 0:
-            print("No daily tasks available")
-            view_task()
-        else:
-            print("\n All Tasks: ")
-            for task in daily_task + weekly_task + monthly_task + yearly_task:
-                print(task)
-    elif choice == 6:
+    """Display tasks for the selected category or all tasks."""
+    menu = ("1. DAILY TASKS", "2. WEEKLY TASKS", "3. MONTHLY TASKS",
+            "4. YEARLY TASKS", "5. ALL TASKS", "6. EXIT")
+    print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
+    choice = int(input("Enter Your Choice:").strip())
+
+    if choice == 6:
         print("Exiting.....")
         show_menu()
-    else:
+        return
+
+    task_groups = {
+        1: (daily_task, "Daily Tasks"),
+        2: (weekly_task, "Weekly Tasks"),
+        3: (monthly_task, "Monthly Tasks"),
+        4: (yearly_task, "Yearly Tasks"),
+        5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks"),
+    }
+
+    if choice not in task_groups:
         print("Invalid Input. Try Again!")
         show_menu()
+        return
+
+    task_list, label = task_groups[choice]
+    display_task_list(task_list, label)
+
 
 def save_task():
-    menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS","4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS","6. EXIT")  
-    choice = int(input("Enter Your Choice: ").strip())      
+    """Save the selected task list to storage or return to the main menu."""
+    menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS",
+            "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT")
+    print("Enter the type of task you want to save: \n" + "\n".join(menu))
+    choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
         file_handler.save_daily()
     elif choice == 2:
@@ -127,10 +123,9 @@ def save_task():
         file_handler.save_yearly()
     elif choice == 5:
         file_handler.save_all()
-    elif choice== 6:
+    elif choice == 6:
         print("Exiting.....")
         show_menu()
     else:
         print("Invalid Input. Try Again!")
         save_task()
-        
