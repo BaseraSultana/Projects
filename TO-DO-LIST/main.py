@@ -273,3 +273,7 @@ def undo_last_delete():
     else:
         print("Invalid Input. Try Again!")
         undo_last_delete()
+
+
+while True:
+    show_menu()
