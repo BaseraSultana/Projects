@@ -248,4 +248,4 @@ def delete_task():
         return
     else:
         print("Invalid Input. Try Again!")
-        complete_task()
+        delete_task()
