@@ -205,6 +205,7 @@ def complete_task():
 
 
 def delete_choice(type_of_task, filename):
+    """Delete a task from a task list and persist the updated list."""
     choice = input("Enter which task you want to delete: ")
     if choice.isdigit():
         index = int(choice) - 1
@@ -213,10 +214,10 @@ def delete_choice(type_of_task, filename):
             print(f"Task '{removed_task}' is deleted.....")
             file_handler.save_tasks(type_of_task, filename)
             return removed_task
-        else:
-            print("Invalid task number. Please try again.")
-    else:
-        print("Invalid input. Please enter a valid number.")
+        print("Invalid task number. Please try again.")
+        return None
+    print("Invalid input. Please enter a valid number.")
+    return None
 
 
 deleted_task = []
