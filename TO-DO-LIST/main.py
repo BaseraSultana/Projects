@@ -254,3 +254,6 @@ def delete_task():
 
 
 def undo_last_delete():
+    print("Do you want to undo last delete?\n", "1. Yes\n", "2. No")
+    choice = int(input("Enter Your Choice: ").strip())
+    if choice == 1:
