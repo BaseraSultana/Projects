@@ -202,4 +202,49 @@ def complete_task():
     else:
         print("Invalid Input. Try Again!")
         complete_task()
-# 3
+
+
+def delete_choice(type_of_task, filename):
+    choice = input("Enter which task you want to delete: ")
+    if choice.isdigit():
+        index = int(choice) - 1
+        if 0 <= index < len(type_of_task):
+            removed_task = type_of_task.pop(index)
+            print(f"Task '{removed_task}' is deleted.....")
+            file_handler.save_tasks(type_of_task, filename)
+            return removed_task
+        else:
+            print("Invalid task number. Please try again.")
+    else:
+        print("Invalid input. Please enter a valid number.")
+
+
+deleted_task = []
+
+
+def delete_task():
+    """Delete a task from the selected category."""
+    menu = ("1. DAILY TASK", "2. WEEKLY TASK",
+            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
+    print("Select the type of task you want to delete: \n" + "\n".join(menu))
+    choice = int(input("Enter Your Choice: ").strip())
+    task_groups = {
+        1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
+        2: (weekly_task, "Weekly Tasks", "weekly_tasks.txt"),
+        3: (monthly_task, "Monthly Tasks", "monthly_tasks.txt"),
+        4: (yearly_task, "Yearly Tasks", "yearly_tasks.txt"),
+    }
+
+    if choice in task_groups:
+        task_list, label, filename = task_groups[choice]
+        display_task_list(task_list, label)
+        removed_task = delete_choice(task_list, filename)
+        if removed_task is not None:
+            deleted_task.append(removed_task)
+    elif choice == 5:
+        print("Exiting.....")
+        show_menu()
+        return
+    else:
+        print("Invalid Input. Try Again!")
+        complete_task()
