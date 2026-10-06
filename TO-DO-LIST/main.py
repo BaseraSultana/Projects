@@ -97,13 +97,19 @@ def view_task():
         4: (yearly_task, "Yearly Tasks"),
         5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks"),
     }
+    if choice == 5:
+        display_task_list(daily_task, "Daily Tasks")
+        display_task_list(weekly_task, "Weekly Tasks")
+        display_task_list(monthly_task, "Monthly Tasks")
+        display_task_list(yearly_task, "Yearly Tasks")
 
     if choice not in task_groups:
         print("Invalid Input. Try Again!")
         show_menu()
         return
 
-    task_list, label = task_groups[choice]
+    else:
+        task_list, label = task_groups[choice]
     display_task_list(task_list, label)
 
 
@@ -113,19 +119,36 @@ def save_task():
             "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT")
     print("Enter the type of task you want to save: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
-    if choice == 1:
-        file_handler.save_daily()
-    elif choice == 2:
-        file_handler.save_weekly()
-    elif choice == 3:
-        file_handler.save_monthly()
-    elif choice == 4:
-        file_handler.save_yearly()
-    elif choice == 5:
-        file_handler.save_all()
+    save_groups = {
+        1: (daily_task, "Daily Tasks"),
+        2: (weekly_task, "Weekkly Tasks"),
+        3: (monthly_task, "Monthly Tasks"),
+        4: (yearly_task, "Yearly Tasks"),
+        5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks")
+    }
+    if choice in save_groups:
+        task_list, label = save_groups[choice]
+        file_handler.save_tasks(task_list, filename)
     elif choice == 6:
         print("Exiting.....")
         show_menu()
     else:
         print("Invalid Input. Try Again!")
         save_task()
+
+    # if choice == 1:
+    #     file_handler.save_daily()
+    # elif choice == 2:
+    #     file_handler.save_weekly()
+    # elif choice == 3:
+    #     file_handler.save_monthly()
+    # elif choice == 4:
+    #     file_handler.save_yearly()
+    # elif choice == 5:
+    #     file_handler.save_all()
+    # elif choice == 6:
+    #     print("Exiting.....")
+    #     show_menu()
+    # else:
+    #     print("Invalid Input. Try Again!")
+    #     save_task()
