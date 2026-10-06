@@ -4,8 +4,8 @@ import file_handler
 def show_menu():
     """Display the main menu and handle the user's selection."""
     menu = ("1. ADD TASK", "2. VIEW TASK", "3. SAVE TASK",
-            "4. COMPLETE TASK", "5. DELETE TASK",
-            "6. UNDO LAST DELETE", "7. EXIT")
+            "4. COMPLETE TASK", "5. DELETE TASK", "6. COMPLETED TASK HISTORY",
+            "7. UNDO LAST DELETE", "8. EXIT")
     print("\nTO-DO LIST\n" + "\n".join(menu))
     get_choice()
 
@@ -24,18 +24,20 @@ def get_choice():
     elif choice == 5:
         delete_task()
     elif choice == 6:
-        undo_last_delete()
+        completed_task_history()
     elif choice == 7:
+        undo_last_delete()
+    elif choice == 8:
         print("Exiting.....")
         raise SystemExit
     else:
         print("Invalid Input. Try Again!")
 
 
-daily_task = []
-weekly_task = []
-monthly_task = []
-yearly_task = []
+daily_task = file_handler.load_tasks("daily_tasks.txt")
+weekly_task = file_handler.load_tasks("weekly_tasks.txt")
+monthly_task = file_handler.load_tasks("monthly_tasks.txt")
+yearly_task = file_handler.load_tasks("yearly_tasks.txt")
 
 
 def task_choice():
@@ -68,6 +70,7 @@ def add_task():
     else:
         print("Invalid Input. Try Again!")
         add_task()
+    print("Task added successfully!")
 
 
 def display_task_list(task_list, label):
@@ -121,7 +124,7 @@ def save_task():
     """Save the selected task list to storage or return to the main menu."""
     menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS",
             "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT")
-    print("Enter the type of task you want to save: \n" + "\n".join(menu))
+    print("\nEnter the type of task you want to save: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     save_groups = {
         1: (daily_task, "daily_tasks.txt"),
@@ -138,7 +141,16 @@ def save_task():
 
     if choice in save_groups:
         task_list, label = save_groups[choice]
+        if choice == 5:
+            for category_tasks, filename in (
+                (daily_task, "daily_tasks.txt"),
+                (weekly_task, "weekly_tasks.txt"),
+                (monthly_task, "monthly_tasks.txt"),
+                (yearly_task, "yearly_tasks.txt"),
+            ):
+                file_handler.save_tasks(category_tasks, filename)
         file_handler.save_tasks(task_list, label)
+        print(f"{label} saved successfully!")
         return
 
     print("Invalid Input. Try Again!")
@@ -210,6 +222,9 @@ def complete_task():
 def delete_choice(type_of_task, filename):
     """Delete a task from a task list and persist the updated list."""
     choice = input("Enter which task you want to delete: ")
+    if not type_of_task:
+        print("No tasks available to delete.")
+        return None, None
     if choice.isdigit():
         index = int(choice) - 1
         if 0 <= index < len(type_of_task):
@@ -253,6 +268,17 @@ def delete_task():
     else:
         print("Invalid Input. Try Again!")
         delete_task()
+
+
+def completed_task_history():
+    """Display the history of completed tasks."""
+    completed_tasks = file_handler.load_tasks("completed_tasks.txt")
+    if not completed_tasks:
+        print("No completed tasks available.")
+        return
+    print("\nCompleted Tasks History:")
+    for i, task in enumerate(completed_tasks, start=1):
+        print(f"{i}. {task}")
 
 
 def undo_last_delete():
