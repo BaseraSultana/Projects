@@ -2,12 +2,20 @@
 
 from pathlib import Path
 
+
 def save_tasks(task_list, filename):
     """Save the provided task list to the specified file."""
     file_path = Path(__file__).with_name(filename)
     with file_path.open("w", encoding="utf-8") as file:
         for task in task_list:
             file.write(task + "\n")
+
+
+def append_completed_task(task, category, filename="completed_tasks.txt"):
+    """Append a completed task to the completion history."""
+    file_path = Path(__file__).with_name(filename)
+    with file_path.open("a", encoding="utf-8") as file:
+        file.write(f"{category}: {task}\n")
 
 
 def load_tasks(filename):

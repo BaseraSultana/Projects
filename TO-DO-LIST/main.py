@@ -121,11 +121,11 @@ def save_task():
     print("Enter the type of task you want to save: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     save_groups = {
-        1: (daily_task, "Daily Tasks"),
-        2: (weekly_task, "Weekly Tasks"),
-        3: (monthly_task, "Monthly Tasks"),
-        4: (yearly_task, "Yearly Tasks"),
-        5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks")
+        1: (daily_task, "daily_tasks.txt"),
+        2: (weekly_task, "weekly_tasks.txt"),
+        3: (monthly_task, "monthly_tasks.txt"),
+        4: (yearly_task, "yearly_tasks.txt"),
+        5: (daily_task + weekly_task + monthly_task + yearly_task, "all_tasks.txt")
     }
 
     if choice == 6:
@@ -162,7 +162,17 @@ def save_task():
 def complete_choice():
     """Prompt the user to select a task to mark as complete."""
     choice = input("Enter which task you want to mark as complete: ")
-
+    if choice.isdigit():
+        index = int(choice) - 1
+        if 0 <= index < len(daily_task):
+            completed_task = daily_task[index]
+            file_handler.append_completed_task(completed_task, "Daily")
+            daily_task.pop(index)
+            file_handler.save_tasks(daily_task, "daily_tasks.txt")
+            print(f"Task '{completed_task}' marked as complete.")
+            return
+        else:
+            print("Invalid task number. Please try again.")
 
 def complete_task():
     """Mark a task as complete for the selected category."""
