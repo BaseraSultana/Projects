@@ -159,27 +159,46 @@ def save_task():
     #     save_task()
 
 
-def complete_choice():
+def complete_choice(type_of_task, filename):
     """Prompt the user to select a task to mark as complete."""
     choice = input("Enter which task you want to mark as complete: ")
     if choice.isdigit():
         index = int(choice) - 1
-        if 0 <= index < len(daily_task):
-            completed_task = daily_task[index]
-            file_handler.append_completed_task(completed_task, "Daily")
-            daily_task.pop(index)
-            file_handler.save_tasks(daily_task, "daily_tasks.txt")
+        if 0 <= index < len(type_of_task):
+            completed_task = type_of_task.pop(index)
             print(f"Task '{completed_task}' marked as complete.")
-            return
+            file_handler.save_tasks(type_of_task, filename)
+            return completed_task
         else:
             print("Invalid task number. Please try again.")
+    else:
+        print("Invalid input. Please enter a valid number.")
+
 
 def complete_task():
     """Mark a task as complete for the selected category."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
-            "3, MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
+            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
     print("Select the type of task you want to mark as complete: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
-    if choice == 1:
-        display_task_list(daily_task, "Daily Tasks")
-        complete_choice()
+    task_groups = {
+        1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
+        2: (weekly_task, "Weekly Tasks", "weekly_tasks.txt"),
+        3: (monthly_task, "Monthly Tasks", "monthly_tasks.txt"),
+        4: (yearly_task, "Yearly Tasks", "yearly_tasks.txt"),
+    }
+
+    if choice in task_groups:
+        task_list, label, filename = task_groups[choice]
+        display_task_list(task_list, label)
+        completed_task = complete_choice(task_list, filename)
+        if completed_task is not None:
+            file_handler.append_completed_task(
+                completed_task, "completed_tasks.txt")
+    elif choice == 5:
+        print("Exiting.....")
+        show_menu()
+        return
+    else:
+        print("Invalid Input. Try Again!")
+        complete_task()

@@ -11,11 +11,11 @@ def save_tasks(task_list, filename):
             file.write(task + "\n")
 
 
-def append_completed_task(task, category, filename="completed_tasks.txt"):
-    """Append a completed task to the completion history."""
+def append_completed_task(task, filename):
+    """Append a completed task to the specified file."""
     file_path = Path(__file__).with_name(filename)
     with file_path.open("a", encoding="utf-8") as file:
-        file.write(f"{category}: {task}\n")
+        file.write(task + "\n")
 
 
 def load_tasks(filename):
