@@ -72,10 +72,11 @@ def display_task_list(task_list, label):
     if not task_list:
         print(f"No {label.lower()} available")
         return
-
+    i = 1
     print(f"\n {label}: ")
     for task in task_list:
-        print(task)
+        print(f"{i}. {task}")
+        i += 1
 
 
 def view_task():
@@ -110,7 +111,7 @@ def view_task():
 
     else:
         task_list, label = task_groups[choice]
-    display_task_list(task_list, label)
+        display_task_list(task_list, label)
 
 
 def save_task():
@@ -121,20 +122,24 @@ def save_task():
     choice = int(input("Enter Your Choice: ").strip())
     save_groups = {
         1: (daily_task, "Daily Tasks"),
-        2: (weekly_task, "Weekkly Tasks"),
+        2: (weekly_task, "Weekly Tasks"),
         3: (monthly_task, "Monthly Tasks"),
         4: (yearly_task, "Yearly Tasks"),
         5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks")
     }
-    if choice in save_groups:
-        task_list, label = save_groups[choice]
-        file_handler.save_tasks(task_list, filename)
-    elif choice == 6:
+
+    if choice == 6:
         print("Exiting.....")
         show_menu()
-    else:
-        print("Invalid Input. Try Again!")
-        save_task()
+        return
+
+    if choice in save_groups:
+        task_list, label = save_groups[choice]
+        file_handler.save_tasks(task_list, label)
+        return
+
+    print("Invalid Input. Try Again!")
+    save_task()
 
     # if choice == 1:
     #     file_handler.save_daily()
@@ -152,3 +157,17 @@ def save_task():
     # else:
     #     print("Invalid Input. Try Again!")
     #     save_task()
+
+
+def complete_choice():
+    choice = input("Enter which task you want to mark as complete: ")
+
+
+def complete_task():
+    menu = ("1. DAILY TASK", "2. WEEKLY TASK",
+            "3, MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
+    print("Select the type of task you want to mark as complete: \n" + "\n".join(menu))
+    choice = int(input("Enter Your Choice: ").strip())
+    if choice == 1:
+        display_task_list(daily_task, "Daily Tasks")
+        complete_choice()
