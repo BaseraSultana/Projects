@@ -4,7 +4,8 @@ import file_handler
 def show_menu():
     """Display the main menu and handle the user's selection."""
     menu = ("1. ADD TASK", "2. VIEW TASK", "3. SAVE TASK",
-            "4. COMPLETE TASK", "5. DELETE TASK", "6. EXIT")
+            "4. COMPLETE TASK", "5. DELETE TASK",
+            "6. UNDO LAST DELETE", "7. EXIT")
     print("\nTO-DO LIST\n" + "\n".join(menu))
     get_choice()
 
@@ -215,7 +216,7 @@ def delete_choice(type_of_task, filename):
             removed_task = type_of_task.pop(index)
             print(f"Task '{removed_task}' is deleted.....")
             file_handler.save_tasks(type_of_task, filename)
-            return removed_task
+            return removed_task, index
         print("Invalid task number. Please try again.")
         return None
     print("Invalid input. Please enter a valid number.")
@@ -241,9 +242,10 @@ def delete_task():
     if choice in task_groups:
         task_list, label, filename = task_groups[choice]
         display_task_list(task_list, label)
-        removed_task = delete_choice(task_list, filename)
-        if removed_task is not None:
-            deleted_task.append(removed_task)
+        deletion = delete_choice(task_list, filename)
+        if deletion is not None:
+            removed_task, index = deletion
+            deleted_task.append((task_list, filename, index, removed_task))
     elif choice == 5:
         print("Exiting.....")
         show_menu()
@@ -254,6 +256,20 @@ def delete_task():
 
 
 def undo_last_delete():
+    """Restore the most recently deleted task if available."""
     print("Do you want to undo last delete?\n", "1. Yes\n", "2. No")
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
+        if deleted_task:
+            task_list, filename, index, task = deleted_task.pop()
+            task_list.insert(index, task)
+            file_handler.save_tasks(task_list, filename)
+            print(f"Restored task: {task}")
+        else:
+            print("No deleted tasks to undo.")
+    elif choice == 2:
+        print("Exiting.....")
+        show_menu()
+    else:
+        print("Invalid Input. Try Again!")
+        undo_last_delete()
