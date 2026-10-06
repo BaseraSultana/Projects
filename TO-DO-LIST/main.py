@@ -23,6 +23,8 @@ def get_choice():
     elif choice == 5:
         delete_task()
     elif choice == 6:
+        undo_last_delete()
+    elif choice == 7:
         print("Exiting.....")
         raise SystemExit
     else:
@@ -249,3 +251,6 @@ def delete_task():
     else:
         print("Invalid Input. Try Again!")
         delete_task()
+
+
+def undo_last_delete():
