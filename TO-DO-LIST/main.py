@@ -160,10 +160,12 @@ def save_task():
 
 
 def complete_choice():
+    """Prompt the user to select a task to mark as complete."""
     choice = input("Enter which task you want to mark as complete: ")
 
 
 def complete_task():
+    """Mark a task as complete for the selected category."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
             "3, MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
     print("Select the type of task you want to mark as complete: \n" + "\n".join(menu))
