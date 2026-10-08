@@ -238,10 +238,10 @@ def complete_task():
 
 def delete_choice(type_of_task, filename):
     """Delete a task from a task list and persist the updated list."""
-    choice = input("Enter which task you want to delete: ")
     if not type_of_task:
         print("No tasks available to delete.")
-        return None, None
+        return None
+    choice = input("Enter which task you want to delete: ")
     if choice.isdigit():
         index = int(choice) - 1
         if 0 <= index < len(type_of_task):
