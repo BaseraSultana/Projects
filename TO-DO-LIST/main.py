@@ -78,11 +78,13 @@ def display_task_list(task_list, label):
     if not task_list:
         print(f"No {label.lower()} available")
         return
-    i = 1
-    print(f"\n {label}: ")
-    for task in task_list:
-        print(f"{i}. {task}")
-        i += 1
+    for i, task in enumerate(task_list, start=1):
+        print(f" {i}. {task}")
+    # i = 1
+    # print(f"\n {label}: ")
+    # for task in task_list:
+    #     print(f"{i}. {task}")
+    #     i += 1
 
 
 def view_task():
@@ -186,6 +188,7 @@ def complete_choice(type_of_task, filename):
             return completed_task
         else:
             print("Invalid task number. Please try again.")
+            complete_choice(type_of_task, filename)
     else:
         print("Invalid input. Please enter a valid number.")
 
