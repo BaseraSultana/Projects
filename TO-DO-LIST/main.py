@@ -250,6 +250,7 @@ def delete_choice(type_of_task, filename):
             file_handler.save_tasks(type_of_task, filename)
             return removed_task, index
         print("Invalid task number. Please try again.")
+        delete_task()
         return None
     print("Invalid input. Please enter a valid number.")
     return None
@@ -262,7 +263,7 @@ def delete_task():
     """Delete a task from the selected category."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
             "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
-    print("Select the type of task you want to delete: \n" + "\n".join(menu))
+    print("\nSelect the type of task you want to delete: \n" + "\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number from 1 to 5.")
