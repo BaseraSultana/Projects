@@ -12,7 +12,11 @@ def show_menu():
 
 def get_choice():
     """Handle the user's selection from the main menu."""
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 8.")
+        return
+    choice = int(choice)
     if choice == 1:
         add_task()
     elif choice == 2:
@@ -51,7 +55,11 @@ def add_task():
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
             "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
     print("\nSelect the type of Task you want to add: \n" + "\n".join(menu))
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 5.")
+        return
+    choice = int(choice)
     if choice == 1:
         task = task_choice()
         daily_task.append(task)
@@ -93,8 +101,11 @@ def view_task():
     menu = ("1. DAILY TASKS", "2. WEEKLY TASKS", "3. MONTHLY TASKS",
             "4. YEARLY TASKS", "5. ALL TASKS", "6. EXIT\n")
     print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
-    choice = int(input("Enter Your Choice:").strip())
-
+    choice = input("Enter Your Choice:").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 6.")
+        return
+    choice = int(choice)
     if choice == 6:
         print("Exiting.....")
         show_menu()
@@ -123,7 +134,11 @@ def save_task():
     menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS",
             "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT\n")
     print("\nEnter the type of task you want to save: \n" + "\n".join(menu))
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 6.")
+        return
+    choice = int(choice)
     save_groups = {
         1: (daily_task, "daily_tasks.txt"),
         2: (weekly_task, "weekly_tasks.txt"),
@@ -194,7 +209,11 @@ def complete_task():
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
             "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
     print("\nSelect the type of task you want to mark as complete: \n" + "\n".join(menu))
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 5.")
+        return
+    choice = int(choice)
     task_groups = {
         1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
         2: (weekly_task, "Weekly Tasks", "weekly_tasks.txt"),
@@ -215,7 +234,6 @@ def complete_task():
         return
     else:
         print("Invalid Input. Try Again!")
-        complete_task()
 
 
 def delete_choice(type_of_task, filename):
@@ -245,7 +263,11 @@ def delete_task():
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
             "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
     print("Select the type of task you want to delete: \n" + "\n".join(menu))
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number from 1 to 5.")
+        return
+    choice = int(choice)
     task_groups = {
         1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
         2: (weekly_task, "Weekly Tasks", "weekly_tasks.txt"),
@@ -283,7 +305,11 @@ def completed_task_history():
 def undo_last_delete():
     """Restore the most recently deleted task if available."""
     print("Do you want to undo last delete?\n", "1. Yes\n", "2. No\n")
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid input. Please enter a menu number between 1 and 2.")
+        return
+    choice = int(choice)
     if choice == 1:
         if deleted_task:
             task_list, filename, index, task = deleted_task.pop()
