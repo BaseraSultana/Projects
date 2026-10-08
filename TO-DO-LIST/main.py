@@ -5,7 +5,7 @@ def show_menu():
     """Display the main menu and handle the user's selection."""
     menu = ("1. ADD TASK", "2. VIEW TASK", "3. SAVE TASK",
             "4. COMPLETE TASK", "5. DELETE TASK", "6. COMPLETED TASK HISTORY",
-            "7. UNDO LAST DELETE", "8. EXIT")
+            "7. UNDO LAST DELETE", "8. EXIT\n")
     print("\nTO-DO LIST\n" + "\n".join(menu))
     get_choice()
 
@@ -49,7 +49,7 @@ def task_choice():
 def add_task():
     """Add a task to the selected task list."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
-            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
+            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
     print("\nSelect the type of Task you want to add: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
@@ -91,7 +91,7 @@ def display_task_list(task_list, label):
 def view_task():
     """Display tasks for the selected category or all tasks."""
     menu = ("1. DAILY TASKS", "2. WEEKLY TASKS", "3. MONTHLY TASKS",
-            "4. YEARLY TASKS", "5. ALL TASKS", "6. EXIT")
+            "4. YEARLY TASKS", "5. ALL TASKS", "6. EXIT\n")
     print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice:").strip())
 
@@ -121,7 +121,7 @@ def view_task():
 def save_task():
     """Save the selected task list to storage or return to the main menu."""
     menu = ("1. SAVE DAILY TASKS", "2. SAVE WEEKLY TASKS", "3.SAVE MONTHLY TASKS",
-            "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT")
+            "4. SAVE YEARLY TASKS", "5. SAVE ALL TASKS", "6. EXIT\n")
     print("\nEnter the type of task you want to save: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     save_groups = {
@@ -184,7 +184,7 @@ def complete_choice(type_of_task, filename):
             return completed_task
         else:
             print("Invalid task number. Please try again.")
-            complete_choice(type_of_task, filename)
+            complete_task()
     else:
         print("Invalid input. Please enter a valid number.")
 
@@ -192,8 +192,8 @@ def complete_choice(type_of_task, filename):
 def complete_task():
     """Mark a task as complete for the selected category."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
-            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
-    print("Select the type of task you want to mark as complete: \n" + "\n".join(menu))
+            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
+    print("\nSelect the type of task you want to mark as complete: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     task_groups = {
         1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
@@ -243,7 +243,7 @@ deleted_task = []
 def delete_task():
     """Delete a task from the selected category."""
     menu = ("1. DAILY TASK", "2. WEEKLY TASK",
-            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT")
+            "3. MONTHLY TASK", "4. YEARLY TASK", "5. EXIT\n")
     print("Select the type of task you want to delete: \n" + "\n".join(menu))
     choice = int(input("Enter Your Choice: ").strip())
     task_groups = {
@@ -282,7 +282,7 @@ def completed_task_history():
 
 def undo_last_delete():
     """Restore the most recently deleted task if available."""
-    print("Do you want to undo last delete?\n", "1. Yes\n", "2. No")
+    print("Do you want to undo last delete?\n", "1. Yes\n", "2. No\n")
     choice = int(input("Enter Your Choice: ").strip())
     if choice == 1:
         if deleted_task:
