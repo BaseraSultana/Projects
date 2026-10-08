@@ -304,6 +304,8 @@ def completed_task_history():
 
 def undo_last_delete():
     """Restore the most recently deleted task if available."""
+    if not delete_choice:
+        print("No deleted tasks to undo.")
     print("Do you want to undo last delete?\n", "1. Yes\n", "2. No\n")
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
@@ -316,8 +318,6 @@ def undo_last_delete():
             task_list.insert(index, task)
             file_handler.save_tasks(task_list, filename)
             print(f"Restored task: {task}")
-        else:
-            print("No deleted tasks to undo.")
     elif choice == 2:
         print("Exiting.....")
         show_menu()
