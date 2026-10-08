@@ -78,6 +78,7 @@ def display_task_list(task_list, label):
     if not task_list:
         print(f"No {label.lower()} available")
         return
+    print(f"\n {label}: ")
     for i, task in enumerate(task_list, start=1):
         print(f" {i}. {task}")
     # i = 1
@@ -106,11 +107,6 @@ def view_task():
         4: (yearly_task, "Yearly Tasks"),
         5: (daily_task + weekly_task + monthly_task + yearly_task, "All Tasks"),
     }
-    if choice == 5:
-        display_task_list(daily_task, "Daily Tasks")
-        display_task_list(weekly_task, "Weekly Tasks")
-        display_task_list(monthly_task, "Monthly Tasks")
-        display_task_list(yearly_task, "Yearly Tasks")
 
     if choice not in task_groups:
         print("Invalid Input. Try Again!")
