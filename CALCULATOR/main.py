@@ -125,7 +125,11 @@ def calculation_history():
 
 def get_choice():
     """Handle the user's menu selection."""
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid Input. Enter a number between 1 and 2.")
+        return
+    choice = int(choice)
     if choice == 1:
         add()
     elif choice == 2:
