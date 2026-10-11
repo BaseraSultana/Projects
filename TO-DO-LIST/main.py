@@ -59,7 +59,7 @@ def add_task():
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number between 1 and 5.")
-        return
+        add_task()
     choice = int(choice)
     if choice == 1:
         task = task_choice()
@@ -78,7 +78,7 @@ def add_task():
         show_menu()
     else:
         print("Invalid Input. Try Again!")
-        return
+        add_task()
     print("Task added successfully!")
 
 
@@ -105,7 +105,7 @@ def view_task():
     choice = input("Enter Your Choice:").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number between 1 and 6.")
-        return
+        view_task()
     choice = int(choice)
     if choice == 6:
         print("Exiting.....")
@@ -138,7 +138,7 @@ def save_task():
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number between 1 and 6.")
-        return
+        save_task()
     choice = int(choice)
     save_groups = {
         1: (daily_task, "daily_tasks.txt"),
@@ -203,6 +203,7 @@ def complete_choice(type_of_task, filename):
             complete_task()
     else:
         print("Invalid input. Please enter a valid number.")
+        complete_task()
 
 
 def complete_task():
@@ -213,7 +214,7 @@ def complete_task():
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number from 1 to 5.")
-        return
+        complete_task()
     choice = int(choice)
     task_groups = {
         1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
@@ -235,6 +236,7 @@ def complete_task():
         return
     else:
         print("Invalid Input. Try Again!")
+        complete_task()
 
 
 def delete_choice(type_of_task, filename):
@@ -267,8 +269,8 @@ def delete_task():
     print("\nSelect the type of task you want to delete: \n" + "\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 5.")
-        return
+        print("Invalid input. Please enter a menu number between 1 and 5.")
+        delete_task()
     choice = int(choice)
     task_groups = {
         1: (daily_task, "Daily Tasks", "daily_tasks.txt"),
@@ -290,7 +292,7 @@ def delete_task():
         return
     else:
         print("Invalid Input. Try Again!")
-        return
+        delete_task()
 
 
 def completed_task_history():
@@ -313,7 +315,7 @@ def undo_last_delete():
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
         print("Invalid input. Please enter a menu number between 1 and 2.")
-        return
+        undo_last_delete()
     choice = int(choice)
     if choice == 1:
         if deleted_task:
