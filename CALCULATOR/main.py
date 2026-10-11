@@ -13,14 +13,16 @@ def display_result(result):
     print(f"Result = {result:.2f}")
     # history(result)
     print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
-    choice = int(input("Enter Your Choice: ").strip())
+    choice = input("Enter Your Choice: ").strip()
+    if not choice.isdigit():
+        print("Invalid Input. Enter a number between 1 and 2.")
+        return
+    choice = int(choice)
     if choice == 1:
-        show_menu()
+        return
     elif choice == 2:
         print("Exiting.....")
         raise SystemExit
-    else:
-        print("Invalid Input")
 
 
 def add():
@@ -92,14 +94,16 @@ def floor_division():
         print(f"Result = {result}")
         # history(result)
         print("Do You Want To Continue?\n", "1. Yes\n", "2. No\n")
-        choice = int(input("Enter Your Choice: ").strip())
+        choice = input("Enter Your Choice: ").strip()
+        if not choice.isdigit():
+            print("Invalid Input. Enter a number between 1 and 2.")
+            return
+        choice = int(choice)
         if choice == 1:
             show_menu()
         elif choice == 2:
             print("Exiting.....")
             raise SystemExit
-        else:
-            print("Invalid Input")
 
 
 history_entries = []
