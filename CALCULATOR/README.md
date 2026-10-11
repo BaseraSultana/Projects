@@ -92,3 +92,4 @@ The calculator can be expanded with several useful enhancements, including:
 ## License
 
 This project is provided for educational and personal use.
+
