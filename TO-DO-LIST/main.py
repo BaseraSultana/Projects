@@ -14,7 +14,7 @@ def get_choice():
     """Handle the user's selection from the main menu."""
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 8.")
+        print("Invalid input. Please enter a menu number between 1 and 8.")
         return
     choice = int(choice)
     if choice == 1:
@@ -35,7 +35,8 @@ def get_choice():
         print("Exiting.....")
         raise SystemExit
     else:
-        print("Invalid Input. Try Again!")
+        print("Invalid Input. Enter a number between 1 and 8.")
+        return
 
 
 daily_task = file_handler.load_tasks("daily_tasks.txt")
@@ -57,7 +58,7 @@ def add_task():
     print("\nSelect the type of Task you want to add: \n" + "\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 5.")
+        print("Invalid input. Please enter a menu number between 1 and 5.")
         return
     choice = int(choice)
     if choice == 1:
@@ -77,7 +78,7 @@ def add_task():
         show_menu()
     else:
         print("Invalid Input. Try Again!")
-        add_task()
+        return
     print("Task added successfully!")
 
 
@@ -103,7 +104,7 @@ def view_task():
     print("\nSelect the type of Task you want to view: \n" + "\n".join(menu))
     choice = input("Enter Your Choice:").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 6.")
+        print("Invalid input. Please enter a menu number between 1 and 6.")
         return
     choice = int(choice)
     if choice == 6:
@@ -136,7 +137,7 @@ def save_task():
     print("\nEnter the type of task you want to save: \n" + "\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 6.")
+        print("Invalid input. Please enter a menu number between 1 and 6.")
         return
     choice = int(choice)
     save_groups = {
@@ -165,9 +166,9 @@ def save_task():
         file_handler.save_tasks(task_list, label)
         print(f"{label} saved successfully!")
         return
-
-    print("Invalid Input. Try Again!")
-    save_task()
+    else:
+        print("Invalid Input. Try Again!")
+        save_task()
 
     # if choice == 1:
     #     file_handler.save_daily()
@@ -289,7 +290,7 @@ def delete_task():
         return
     else:
         print("Invalid Input. Try Again!")
-        delete_task()
+        return
 
 
 def completed_task_history():
