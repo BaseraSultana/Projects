@@ -23,6 +23,9 @@ def display_result(result):
     elif choice == 2:
         print("Exiting.....")
         raise SystemExit
+    else:
+        print("Invalid Input. Enter a number between 1 and 2.")
+        return
 
 
 def add():
@@ -104,6 +107,9 @@ def floor_division():
         elif choice == 2:
             print("Exiting.....")
             raise SystemExit
+        else:
+            print("Invalid Input. Enter a number between 1 and 2.")
+            return
 
 
 history_entries = []
@@ -127,7 +133,7 @@ def get_choice():
     """Handle the user's menu selection."""
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid Input. Enter a number between 1 and 2.")
+        print("Invalid Input. Enter a number between 1 to 9.")
         return
     choice = int(choice)
     if choice == 1:
@@ -150,7 +156,8 @@ def get_choice():
         print("Exiting....")
         raise SystemExit
     else:
-        print("Invalid Input. Try Again!")
+        print("Invalid Input. Enter a number between 1 to 9.")
+        return
 
 
 def show_menu():
