@@ -2,9 +2,13 @@
 
 
 def get_numbers():
-    """Read two integer values from the user."""
-    one = float(input("Enter the First number: ").strip())
-    two = float(input("Enter the Second number: ").strip())
+    """Read two floating-point values from the user."""
+    try:
+        one = float(input("Enter the First number: ").strip())
+        two = float(input("Enter the Second number: ").strip())
+    except ValueError:
+        print("Invalid Input. Enter only numbers.")
+        return None
     return one, two
 
 
@@ -30,7 +34,10 @@ def display_result(result):
 
 def add():
     """Add two numbers."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     result = one + two
     history_entries.append(f"{one}" " + " f"{two}" " = " f"{result}")
     display_result(result)
@@ -38,7 +45,10 @@ def add():
 
 def subtract():
     """Subtract the second number from the first."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     result = one - two
     history_entries.append(f"{one}" " - " f"{two}" " = " f"{result}")
     display_result(result)
@@ -46,7 +56,10 @@ def subtract():
 
 def multiply():
     """Multiply two numbers."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     result = one * two
     history_entries.append(f"{one}" " * " f"{two}" " = " f"{result}")
     display_result(result)
@@ -54,7 +67,10 @@ def multiply():
 
 def divide():
     """Divide the first number by the second."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     if two == 0:
         print("Not defined")
     else:
@@ -65,7 +81,10 @@ def divide():
 
 def modulus():
     """Find the remainder when the first number is divided by the second."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     if two == 0:
         print("Not defined")
     else:
@@ -76,7 +95,10 @@ def modulus():
 
 def exponent():
     """Raise the first number to the power of the second."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     if one == 0 and two == 0:
         print("Not defined")
     else:
@@ -87,7 +109,10 @@ def exponent():
 
 def floor_division():
     """Return the integer quotient of the two numbers."""
-    one, two = get_numbers()
+    numbers = get_numbers()
+    if numbers is None:
+        return
+    one, two = numbers
     if two == 0:
         print("Not defined")
     else:
@@ -103,13 +128,13 @@ def floor_division():
             return
         choice = int(choice)
         if choice == 1:
-            show_menu()
+            return
         elif choice == 2:
             print("Exiting.....")
             raise SystemExit
         else:
             print("Invalid Input. Enter a number between 1 and 2.")
-            floor_division()
+            return
 
 
 history_entries = []
