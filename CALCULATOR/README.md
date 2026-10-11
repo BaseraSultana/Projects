@@ -2,6 +2,19 @@
 
 A simple command-line calculator built in Python. It allows users to perform common arithmetic operations, view calculation history, and continue using the calculator until they choose to exit.
 
+## Technologies Used
+
+- Python 3
+- Command-line interface
+
+## Skills Practiced
+
+This project practices using functions, conditionals, loops, user input, arithmetic operators, and lists to store calculation history.
+
+## Author
+
+**Basera Sultana**
+
 ## Features
 
 - Addition
@@ -92,4 +105,3 @@ The calculator can be expanded with several useful enhancements, including:
 ## License
 
 This project is provided for educational and personal use.
-
