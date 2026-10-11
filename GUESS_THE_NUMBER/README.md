@@ -2,6 +2,20 @@
 
 A simple command-line number guessing game written in Python. The game picks a number from 1 to 100, and you try to guess it using the hints provided.
 
+## Technologies Used
+
+- Python 3
+- Python standard library (`random`)
+- Command-line interface
+
+## Skills Practiced
+
+This project practices using loops, conditionals, user input, exception handling, random number generation, and a guess counter.
+
+## Author
+
+**Basera Sultana**
+
 ## Features
 
 - Randomly selects a target number between 1 and 100
