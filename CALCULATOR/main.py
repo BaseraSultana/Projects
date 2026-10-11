@@ -109,7 +109,7 @@ def floor_division():
             raise SystemExit
         else:
             print("Invalid Input. Enter a number between 1 and 2.")
-            return
+            floor_division()
 
 
 history_entries = []

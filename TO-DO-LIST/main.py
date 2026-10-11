@@ -213,7 +213,7 @@ def complete_task():
     print("\nSelect the type of task you want to mark as complete: \n" + "\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     if not choice.isdigit():
-        print("Invalid input. Please enter a menu number from 1 to 5.")
+        print("Invalid input. Please enter a menu number between 1 and 5.")
         complete_task()
     choice = int(choice)
     task_groups = {
