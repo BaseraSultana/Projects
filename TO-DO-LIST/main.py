@@ -78,7 +78,7 @@ def add_task():
         show_menu()
     else:
         print("Invalid Input. Try Again!")
-        add_task()
+        return
     print("Task added successfully!")
 
 
