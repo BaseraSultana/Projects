@@ -331,5 +331,6 @@ def undo_last_delete():
         undo_last_delete()
 
 
+# start
 while True:
     show_menu()
