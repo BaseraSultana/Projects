@@ -1,5 +1,10 @@
 import file_handler
 
+daily_task = file_handler.load_tasks("daily_tasks.txt")
+weekly_task = file_handler.load_tasks("weekly_tasks.txt")
+monthly_task = file_handler.load_tasks("monthly_tasks.txt")
+yearly_task = file_handler.load_tasks("yearly_tasks.txt")
+
 
 def show_menu():
     """Display the main menu and handle the user's selection."""
@@ -37,12 +42,6 @@ def get_choice():
     else:
         print("Invalid Input. Enter a number between 1 and 8.")
         return
-
-
-daily_task = file_handler.load_tasks("daily_tasks.txt")
-weekly_task = file_handler.load_tasks("weekly_tasks.txt")
-monthly_task = file_handler.load_tasks("monthly_tasks.txt")
-yearly_task = file_handler.load_tasks("yearly_tasks.txt")
 
 
 def task_choice():

@@ -1,4 +1,3 @@
 msg basera
-call bisma
 call saud
 call habeeba
