@@ -14,4 +14,18 @@ def count_characters(text):
     return char
 
 
-def
+def count_sentences(text):
+    sentence = 0
+    for i in text:
+        if i in ['.', '!', '?']:
+            sentence += 1
+
+    return sentence
+
+
+def display_result():
+    get_text()
+    count_words(text)
+    count_characters(text)
+    count_sentences(text)
+    print("")
