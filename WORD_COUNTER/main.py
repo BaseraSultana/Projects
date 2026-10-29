@@ -5,6 +5,8 @@
 def get_text():
     """prompt the user to enter the text"""
     text = input("\nEnter the text: ")
+    if not text:
+        print("Text cannot be empty!")
     # global text
     return text.strip()
 
