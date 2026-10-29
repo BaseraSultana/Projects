@@ -7,21 +7,30 @@ def get_text():
     text = input("\nEnter the text: ")
     if not text:
         print("Text cannot be empty!")
-    # global text
     return text.strip()
 
 
 def count_words(text):
     """Return the number of whitespace-separated words in the text."""
     words = text.split()
-    # global words
     return len(words)
 
 
 def count_characters(text):
     """Count characters in the text, excluding spaces."""
-    chars = len(text.replace(" ", ""))
-    # global chars
+    print("Do you want spaces to be included?", "\n1. Yes", "\n2. No")
+    choice = input("Enter Your Choice: ").strip()
+    try:
+        choice = int(choice)
+    except ValueError:
+        print("Invalid Input. Please enter a valid number!")
+    if choice == 1:
+        chars = len(text)
+    elif choice == 2:
+        chars = len(text.replace(" ", ""))
+    else:
+        print("Invalid Input. Enter a number between 1 and 2.")
+        return None
     return chars
 
 
@@ -31,7 +40,6 @@ def count_sentences(text):
     for i in text:
         if i in ['.', '!', '?']:
             sentence += 1
-    # global sentence
     return sentence
 
 
@@ -70,4 +78,5 @@ def main():
         print("Exiting......")
         raise SystemExit
     else:
-        print("Invalid Input. Enter a number between 1 to 5.")
+        print("Invalid Input. Enter a number from 1 to 5.")
+        return None
