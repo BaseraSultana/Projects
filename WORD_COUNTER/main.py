@@ -10,4 +10,8 @@ def count_words(text):
 
 
 def count_characters(text):
-    char = len
+    char = len(text.replace(" ", ""))
+    return char
+
+
+def
