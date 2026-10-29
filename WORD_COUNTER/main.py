@@ -33,10 +33,6 @@ def count_sentences(text):
     return sentence
 
 
-# def display_results():
-#     print(f"Word Count: {words} ",f"Character Count: {chars} ",f"Sentence Count: {sentence})
-
-
 def count_all():
     """Display word, character, and sentence counts for user-provided text."""
     text = get_text()
@@ -48,7 +44,12 @@ def count_all():
     print("\nRESULT\n" + "\n".join(result))
 
 
-def get_choice():
+def main():
+    """Display the menu and handle the user's selection."""
+    print("    Welcome to Word Counter!    \n", "\nWhat do you want to count?")
+    menu = ("1. COUNT WORDS", "2. COUNT CHARACTERS",
+            "3. COUNT SENTENCES", "4. COUNT ALL", "5. EXIT")
+    print("\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
     try:
         choice = int(choice)
@@ -68,11 +69,3 @@ def get_choice():
         raise SystemExit
     else:
         print("Invalid Input. Enter a number between 1 to 5.")
-
-
-def menu():
-    print("    Welcome to Word Counter!    \n", "\nWhat do you want to count?")
-    menu = ("1. COUNT WORDS", "2. COUNT CHARACTERS",
-            "3. COUNT SENTENCES", "4. COUNT ALL", "5. EXIT")
-    print("\n".join(menu))
-    get_choice()
