@@ -3,11 +3,26 @@
 
 
 def get_text():
-    """Prompt for text, or return to the menu if the user enters Q."""
+    """Read text until three empty lines, or return to the menu if the user enters Q."""
     while True:
-        text = input("\nEnter text (or Q to return to the menu): ").strip()
-        if text.casefold() == "q":
+        first_line = input(
+            "\nEnter or paste text. Press Enter three times on empty lines to finish "
+            "(or enter Q to return to the menu): "
+        )
+        if first_line.strip().casefold() == "q":
             return None
+        lines = [first_line]
+        empty_lines = 1 if not first_line else 0
+        while empty_lines < 3:
+            line = input()
+            if line:
+                empty_lines = 0
+            else:
+                empty_lines += 1
+                if empty_lines == 3:
+                    break
+            lines.append(line)
+        text = "\n".join(lines).strip()
         if not text:
             print("\nText cannot be empty!")
             continue
@@ -16,13 +31,14 @@ def get_text():
 
 def count_words(text):
     """Return the number of whitespace-separated words in the text."""
-    words = text.split()
+    words = text.strip().split()
     return len(words)
 
 
 def count_characters(text):
     """Count characters in the text, excluding and including spaces."""
-    print("\nDo you want spaces to be included?", "\n1. Yes", "\n2. No")
+    print("\nDo you want spaces to be included for character count?",
+          "\n1. Yes", "\n2. No")
     choice = input("\nEnter Your Choice: ").strip()
     try:
         choice = int(choice)
