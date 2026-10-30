@@ -79,6 +79,9 @@ def main():
             "3. COUNT SENTENCES", "4. COUNT ALL", "5. EXIT")
     print("\n".join(menu))
     choice = input("Enter Your Choice: ").strip()
+    if not choice:
+        print("Choice cannot be empty!")
+        return
     try:
         choice = int(choice)
     except ValueError:
@@ -93,8 +96,6 @@ def main():
     if choice not in (1, 2, 3):
         print("Invalid Input. Enter a number from 1 to 5.")
         return
-    if not choice:
-        print("Choice cannot be empty!")
 
     text = get_text()
     if text is None:
