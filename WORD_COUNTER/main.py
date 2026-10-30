@@ -21,13 +21,13 @@ def count_words(text):
 
 
 def count_characters(text):
-    """Count characters in the text, excluding spaces."""
+    """Count characters in the text, excluding and including spaces."""
     print("Do you want spaces to be included?", "\n1. Yes", "\n2. No")
     choice = input("Enter Your Choice: ").strip()
     try:
         choice = int(choice)
     except ValueError:
-        print("Invalid Input. Please enter a valid number!")
+        print("Invalid Input. Please enter a valid !")
     if choice == 1:
         # if i want several spaces to count as just one character, then
         # chars = len(" ",join(text.split()))
@@ -43,11 +43,18 @@ def count_characters(text):
 def count_sentences(text):
     """Count sentence-ending punctuation marks in the text."""
     sentence = 0
-    for index, in text:
-        # if i in ['.', '!', '?']:
-        #     if i+1 in ['.', '!', '?']:
+    in_ending = False
 
-        sentence += 1
+    for char in text:
+        # if i in ['.', '!', '?']:
+        # if several punctuations are present then the sentence should be counted as one.
+        if char in ".!?":
+            if not in_ending:
+                sentence += 1
+            in_ending = True
+        else:
+            in_ending = False
+
     return sentence
 
 
@@ -76,11 +83,11 @@ def main():
         print("Invalid Input. Please enter a valid number!")
     text = get_text()
     if choice == 1:
-        count_words(text)
+        print(f"Word Count: {count_words(text)}")
     elif choice == 2:
-        count_characters(text)
+        print(f"Character Count: {count_characters(text)}")
     elif choice == 3:
-        count_sentences(text)
+        print(f"Sentence Count: {count_sentences(text)}")
     elif choice == 4:
         count_all()
     elif choice == 5:
