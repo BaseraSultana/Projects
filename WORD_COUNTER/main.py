@@ -4,9 +4,13 @@
 
 def get_text():
     """prompt the user to enter the text"""
-    text = input("\nEnter the text: ")
+    text = input("\nEnter the text (or) enter 'Q' to Exit : ")
+    if text.casefold() == "q":
+        print("Exiting......")
+        main()
     if not text:
         print("Text cannot be empty!")
+        get_text()
     return text.strip()
 
 
@@ -25,6 +29,8 @@ def count_characters(text):
     except ValueError:
         print("Invalid Input. Please enter a valid number!")
     if choice == 1:
+        # if i want several spaces to count as just one character, then
+        # chars = len(" ",join(text.split()))
         chars = len(text)
     elif choice == 2:
         chars = len(text.replace(" ", ""))
@@ -37,9 +43,11 @@ def count_characters(text):
 def count_sentences(text):
     """Count sentence-ending punctuation marks in the text."""
     sentence = 0
-    for i in text:
-        if i in ['.', '!', '?']:
-            sentence += 1
+    for index, in text:
+        # if i in ['.', '!', '?']:
+        #     if i+1 in ['.', '!', '?']:
+
+        sentence += 1
     return sentence
 
 
@@ -56,7 +64,8 @@ def count_all():
 
 def main():
     """Display the menu and handle the user's selection."""
-    print("    Welcome to Word Counter!    \n", "\nWhat do you want to count?")
+    print("\n    Welcome to Word Counter!    \n",
+          "\nWhat do you want to count?")
     menu = ("1. COUNT WORDS", "2. COUNT CHARACTERS",
             "3. COUNT SENTENCES", "4. COUNT ALL", "5. EXIT")
     print("\n".join(menu))
@@ -80,3 +89,7 @@ def main():
     else:
         print("Invalid Input. Enter a number from 1 to 5.")
         return None
+
+
+while True:
+    main()
