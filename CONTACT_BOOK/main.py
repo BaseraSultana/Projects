@@ -2,3 +2,4 @@
 # search
 # update
 # delete
+# show all
